@@ -1,0 +1,42 @@
+    app:
+        name: Kafka
+        code: kafka
+        notify: aannavarghese@ecloudcontrol.com
+
+    build:
+        version: 4.0
+        env: DEV
+        build_file: none
+        output_files: output/*.zip
+        image_template: kafka-4.0
+
+    deploy:
+        context: ansu-cc/DEV
+        type: statefulset
+        replicas: 3
+        #ingress: none
+        #resources: x-large
+        port:
+        - 9092
+        - 9093
+        
+
+    volumes:
+      - claim: kafka-data
+        mount: /appz/data
+        name: data
+        size: 5Gi
+
+    properties:
+        KAFKA_BROKERS: "0@kafka-cluster-4-0-0.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092,1@kafka-cluster-4-0-1.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092,2@kafka-cluster-4-0-2.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092"
+        KAFKA_REPLICATION_FACTOR: 3
+        KAFKA_MIN_ISR: 2
+        KAFKA_CLUSTER_ID: CzD5-u38TE2yZ86tNJh78w
+          #vault: KAFKA_CLUSTER_ID
+        KAFKA_CONTROLLER_UUID_0: Vgipvi8uRE2tjY-Nnj_8xw
+          #vault: KAFKA_CONTROLLER_UUID_0
+        KAFKA_CONTROLLER_UUID_1: NLtyGlD6Q8udOVjVXc8KcA
+          #vault: KAFKA_CONTROLLER_UUID_1
+        KAFKA_CONTROLLER_UUID_2: PdWKKzy7Q4G-4ac0GnlYmA
+          #ault: KAFKA_CONTROLLER_UUID_2
+        revision : 11
