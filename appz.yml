@@ -28,7 +28,7 @@
         size: 5Gi
 
     properties:
-        KAFKA_BROKERS: "0@kafka-cluster-4-0-0.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092,1@kafka-cluster-4-0-1.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092,2@kafka-cluster-4-0-2.kafka-cluster-4-0.tradeideas-dev.svc.cluster.local:9092"
+        KAFKA_BROKERS: "0@kafka-cluster-4-0-0.kafka-cluster-4-0:9093,1@kafka-cluster-4-0-1.kafka-cluster-4-0:9093,2@kafka-cluster-4-0-2.kafka-cluster-4-0:9093"
         KAFKA_REPLICATION_FACTOR: 3
         KAFKA_MIN_ISR: 2
         KAFKA_CLUSTER_ID: CzD5-u38TE2yZ86tNJh78w
@@ -39,4 +39,4 @@
           #vault: KAFKA_CONTROLLER_UUID_1
         KAFKA_CONTROLLER_UUID_2: PdWKKzy7Q4G-4ac0GnlYmA
           #ault: KAFKA_CONTROLLER_UUID_2
-        revision : 11
+        revision : 12
