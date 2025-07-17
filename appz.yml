@@ -44,4 +44,6 @@
         EXTERNAL_PORT_0: 32001
         EXTERNAL_PORT_1: 32002
         EXTERNAL_PORT_2: 32003
+        SASL_USERNAME: admin
+        SASL_PASSWORD: admin
         revision : 16
