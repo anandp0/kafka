@@ -38,7 +38,7 @@ properties:
     KAFKA_SASL_USERNAME: admin
     KAFKA_SASL_PASSWORD: admin
     KAFKA_SASL_MECHANISM: PLAIN
-    revision: 1
+    revision: 2
     vault:
       - KAFKA_CLUSTER_ID
       - KAFKA_CONTROLLER_UUID_0
