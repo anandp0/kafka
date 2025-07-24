@@ -1,25 +1,25 @@
 app:
-    name: Kafka
-    code: kafka
-    notify: apeethambaran@ecloudcontrol.com
+  name: Kafka
+  code: kafka
+  notify: apeethambaran@ecloudcontrol.com
 
 build:
-    version: 4.0
-    env: DEV
-    build_file: none
-    output_files: output/*.zip
-    image_template: kafka-4.0
+  version: 4.0
+  env: DEV
+  build_file: none
+  output_files: output/*.zip
+  image_template: kafka-4.0
 
 deploy:
-    context: anandp0/DEV
-    type: statefulset
-    replicas: 3
-    #ingress: none
-    #resources: x-large
-    port:
-      - 9092
-      - 9093
-      - 9094
+  context: anandp0/DEV
+  type: statefulset
+  replicas: 3
+  #ingress: none
+  #resources: x-large
+  port:
+    - 9092
+    - 9093
+    - 9094
 
 volumes:
   - claim: kafka-data
@@ -28,19 +28,26 @@ volumes:
     size: 5Gi
 
 properties:
-    KAFKA_BROKERS: "0@kafka-4-0-0.kafka-4-0:9093,1@kafka-4-0-1.kafka-4-0:9093,2@kafka-4-0-2.kafka-4-0:9093"
-    KAFKA_REPLICATION_FACTOR: 3
-    KAFKA_MIN_ISR: 2
-    EXTERNAL_IP: 10.0.142.29
-    EXTERNAL_PORT_0: 32001
-    EXTERNAL_PORT_1: 32002
-    EXTERNAL_PORT_2: 32003
-    KAFKA_SASL_USERNAME: admin
-    KAFKA_SASL_PASSWORD: admin
-    KAFKA_SASL_MECHANISM: PLAIN
-    revision: 4
-    vault:
-      - KAFKA_CLUSTER_ID
-      - KAFKA_CONTROLLER_UUID_0
-      - KAFKA_CONTROLLER_UUID_1
-      - KAFKA_CONTROLLER_UUID_2
+  KAFKA_BROKERS: "0@kafka-4-0-0.kafka-4-0:9093,1@kafka-4-0-1.kafka-4-0:9093,2@kafka-4-0-2.kafka-4-0:9093"
+  KAFKA_REPLICATION_FACTOR: 3
+  KAFKA_MIN_ISR: 2
+  EXTERNAL_IP: 10.0.142.29
+  EXTERNAL_PORT_0: 32001
+  EXTERNAL_PORT_1: 32002
+  EXTERNAL_PORT_2: 32003
+  KAFKA_SASL_MECHANISM: PLAIN
+  revision: 4
+
+  # Vault-managed environment variables
+  KAFKA_CLUSTER_ID:
+    vault: KAFKA_CLUSTER_ID
+  KAFKA_CONTROLLER_UUID_0:
+    vault: KAFKA_CONTROLLER_UUID_0
+  KAFKA_CONTROLLER_UUID_1:
+    vault: KAFKA_CONTROLLER_UUID_1
+  KAFKA_CONTROLLER_UUID_2:
+    vault: KAFKA_CONTROLLER_UUID_2
+  KAFKA_SASL_USERNAME:
+    vault: KAFKA_SASL_USERNAME
+  KAFKA_SASL_PASSWORD:
+    vault: KAFKA_SASL_PASSWORD
